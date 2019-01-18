@@ -20,6 +20,9 @@
         li {
             list-style: none;
         }
+        .active{
+            opacity:0.6;
+        }
 
         .clearfix::after{
             content: '';
@@ -134,7 +137,7 @@
             <h1>Music upload panel</h1>
             <div id="container">
                 <p>Click on the button or drag files here</p>
-                <div id="pickfiles">upload</div>
+                <div id="pickfiles">upload</div><span id="uploadprogress"></span>
             </div>
             <span class="comments">*上传文件大小不能超过100M</span>
         </main>
@@ -191,6 +194,7 @@
     <script src="../vendors/moxie.min.js"></script>
     <script src="../node_modules/plupload/js/plupload.min.js"></script>
     <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+    <script src="./js/initialAv.js"></script>
     <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
     <script src="./js/eventHub.js"></script>
     <script src="./js/songForm.js"></script>

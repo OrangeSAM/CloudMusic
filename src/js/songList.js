@@ -1,6 +1,6 @@
 {
     let view = {
-        el: 'wrapper > songlist',
+        el: '.wrapper > .songlist',
         template: `
         <ul>
             <li>
@@ -43,25 +43,9 @@
             this.view.render(this.model.data);
         },
         initList() {
-            var APP_ID = '8FXe5ffF8dBGfBzQrJDXJPNB-gzGzoHsz';
-            var APP_KEY = 'fvva0OpwSWKOUx1dpYttFSpb';
 
-            AV.init({
-                appId: APP_ID,
-                appKey: APP_KEY
-            });
 
-            // var song = AV.Object.extend('song');
-            // var upload = new song();
-            // upload.save({
-            //     songName: 'stay with me ',
-            //     singer:'test',
-            //     externalUrl:'ddhaidjaoi'           
-            // }).then(function (object) {
-            //     console.log('LeanCloud Rocks!');
-            // },function(err){
-            //     console.log(err);
-            // })
+
 
             // 歌曲获取
             var query = new AV.Query('song');

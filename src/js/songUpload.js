@@ -40,7 +40,8 @@
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
-                        console.log(file.percent)
+                        let ulprogs = view.find('#uploadprogress')
+                        ulprogs.innerText = file.percent;
                     },
                     'FileUploaded': function (up, file, info) {
                         // 每个文件上传成功后,处理相关的事情
@@ -54,9 +55,8 @@
                         var domain = up.getOption('domain');
                         var response = JSON.parse(info.response);
                         var sourceLink = 'http://' + domain + '/' + encodeURIComponent(response.key); //获取上传成功后的文件的Url
-                        console.log('上传完了')
                         window.eventHub.emit('upload', {
-                            'response': response,
+                            'key': response.key,
                             'link': sourceLink,
                         })
                     },
