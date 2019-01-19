@@ -28,6 +28,9 @@
             })
             $(this.el).html(html);
         },
+        reset() {
+            this.render({});
+        }
     }
     let model = {
         data: {
@@ -38,17 +41,7 @@
         save(data) {
             var song = AV.Object.extend('song');
             var upload = new song();
-            upload.save(data
-                // {
-                // songName: 'stay with me ',
-                // singer: 'test',
-                // externalUrl: 'ddhaidjaoi'
-                // }
-            ).then(function (object) {
-                console.log('LeanCloud Rocks!');
-            }, function (err) {
-                console.log(err);
-            })
+            return upload.save(data);
         }
     }
     let controller = {
@@ -65,16 +58,25 @@
             })
         },
         bindEvents() {
+            //view中的子选择器form发生提交事件时
+            //禁止默认事件，并且手机表单中信息存放到data对象中
+            //调用model的save方法保存到leancloud,
             this.view.$el.on('submit', 'form', (e) => {
                 e.preventDefault();
                 let needs = 'songName singer externalUrl'.split(' ');
-                console.log(needs);
                 let data = {};
                 needs.map((string) => {
                     data[string] = this.view.$el.find(`[name="${string}"]`).val();
                 })
-                console.log(data);
-                this.model.save(data);
+                this.model.save(data).then(() => {
+                    console.log('上传到leancloud成功');
+                    this.view.reset();
+                    //此时this.model.data为空
+                    window.eventHub.emit('create', data);
+                    console.log('发布了来自songform的data')
+                }, function (err) {
+                    console.log(err);
+                });
             })
         }
     }
