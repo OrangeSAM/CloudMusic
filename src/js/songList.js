@@ -17,7 +17,6 @@
             let {
                 songs
             } = data;
-            console.log(222)
             let liList = songs.map((song) => $('<li></li>').html(`<div><span>${song.songName}</span><span>${song.singer}</span></div>`));
             $el.find('ul').empty();
             liList.map((domLi) => {
@@ -28,6 +27,16 @@
     let model = {
         data: {
             songs: [],
+        },
+        //歌曲获取
+        fetch() {
+            var query = new AV.Query('song');
+            return query.find().then((result) => {
+                result.map(item => {
+                    return this.data.songs.push(item._serverData);
+                })
+                return this.data.songs;
+            });
         }
     };
     let controller = {
@@ -36,21 +45,13 @@
             this.model = model;
             this.view.render(this.model.data);
             window.eventHub.on('create', (data) => {
-                console.log(data);
                 this.model.data.songs.push(data);
                 this.view.render(this.model.data);
-                console.log(this.model.data);
+            });
+            this.model.fetch().then(() => {
+                this.view.render(this.model.data);
             })
         },
-        initList() {
-            // 歌曲获取
-            var query = new AV.Query('song');
-            query.find().then((result) => {
-                console.log(result[0]._serverData);
-            }).catch((err) => {
-                console.log(err);
-            });
-        }
     }
     controller.init(view, model);
 }
