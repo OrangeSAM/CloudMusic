@@ -85,6 +85,16 @@
                 this.model.data.songs.push(data);
                 this.view.render(this.model.data);
             });
+            window.eventHub.on('update', (song) => {
+                let oldmodel = this.model.data.songs;
+                for (let i = 0; i < oldmodel.length; i++) {
+                    if (oldmodel[i].id === song.id) {
+                        // oldmodel[i] = song;
+                        Object.assign(oldmodel[i], song);
+                    }
+                }
+                this.view.render(this.model.data);
+            })
         }
 
     }

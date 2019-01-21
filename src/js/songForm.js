@@ -58,6 +58,7 @@
                 this.view.render(data);
             });
             window.eventHub.on('clicked', (data) => {
+                console.log(data);
                 this.model.data = data;
                 //点击后也要及时更新model.data
                 this.view.render(data);
@@ -81,6 +82,9 @@
                     updatesong.save('externalUrl', data.externalUrl);
                     // 保存到云端
                     let a = updatesong.save();
+                    Object.assign(this.model.data, data);
+                    //这个时候一定要保护好songlist传来的id,不然另外一边无法判断
+                    window.eventHub.emit('update', this.model.data);
                 } else {
                     let needs = 'songName singer externalUrl'.split(' ');
                     let data = {};
