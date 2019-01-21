@@ -20,8 +20,8 @@
         li {
             list-style: none;
         }
-        .active{
-            opacity:0.6;
+        label{
+            vertical-align: middle;
         }
 
         .clearfix::after{
@@ -87,6 +87,9 @@
         .songlist ul li {
             margin-bottom: 8px;
         }
+        .songlist ul li.active{
+            opacity:0.6;
+        }
 
         .songlist ul li>div {
             padding: 10px;
@@ -94,7 +97,10 @@
             opacity: 0.9;
             color: white;
             border-radius: 2px;
+            cursor: pointer;
+            font-size: 10px;
         }
+
         .songlist ul li>div span{
             vertical-align: top;
         }

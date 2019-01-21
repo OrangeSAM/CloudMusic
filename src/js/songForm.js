@@ -8,20 +8,20 @@
             <form action="">
                     <div>
                         <label for="songName">歌名</label>
-                        <input type="text" name="songName" id="songName" value="__key__">
+                        <input type="text" name="songName" id="songName" value="__songName__">
                     </div>
                     <div>
                         <label for="singer">歌手</label>
-                        <input type="text" name="singer" id="singer">
+                        <input type="text" name="singer" id="singer" value="__singer__">
                     </div>
                     <div>
                         <label for="externalUrl">外链</label>
-                        <input type="text" name="externalUrl" id="externalUrl" value="__link__">
+                        <input type="text" name="externalUrl" id="externalUrl" value="__externalUrl__">
                     </div>
                     <input type="submit" name="" id="" value="提交修改">
             </form>`,
         render(data = {}) {
-            let placeholders = ['key', 'link']
+            let placeholders = ['songName', 'singer', 'externalUrl'];
             let html = this.template;
             placeholders.map((string) => {
                 html = html.replace(`__${string}__`, data[string] || '')
@@ -36,7 +36,8 @@
         data: {
             songName: '',
             singer: '',
-            externalUrl: ''
+            externalUrl: '',
+            id: ''
         },
         save(data) {
             var song = AV.Object.extend('song');
@@ -55,6 +56,11 @@
                 //当音乐上传模块上传完毕后，会通过事件中心告诉这里，
                 //并且传递了上传的data，这里把data交给view渲染到页面上
                 this.view.render(data);
+            });
+            window.eventHub.on('clicked', (data) => {
+                this.model.data = data;
+                //点击后也要及时更新model.data
+                this.view.render(data);
             })
         },
         bindEvents() {
@@ -63,20 +69,33 @@
             //调用model的save方法保存到leancloud,
             this.view.$el.on('submit', 'form', (e) => {
                 e.preventDefault();
-                let needs = 'songName singer externalUrl'.split(' ');
-                let data = {};
-                needs.map((string) => {
-                    data[string] = this.view.$el.find(`[name="${string}"]`).val();
-                })
-                this.model.save(data).then(() => {
-                    console.log('上传到leancloud成功');
-                    this.view.reset();
-                    //此时this.model.data为空
-                    window.eventHub.emit('create', data);
-                    console.log('发布了来自songform的data')
-                }, function (err) {
-                    console.log(err);
-                });
+                if (this.model.data.id) {
+                    var updatesong = AV.Object.createWithoutData('song', this.model.data.id);
+                    let needs = 'songName singer externalUrl'.split(' ');
+                    let data = {};
+                    needs.map((string) => {
+                        data[string] = this.view.$el.find(`[name="${string}"]`).val();
+                    })
+                    updatesong.save('songName', data.songName);
+                    updatesong.save('singer', data.singer);
+                    updatesong.save('externalUrl', data.externalUrl);
+                    // 保存到云端
+                    let a = updatesong.save();
+                } else {
+                    let needs = 'songName singer externalUrl'.split(' ');
+                    let data = {};
+                    needs.map((string) => {
+                        data[string] = this.view.$el.find(`[name="${string}"]`).val();
+                    })
+                    this.model.save(data).then(() => {
+                        console.log('上传到leancloud成功');
+                        this.view.reset();
+                        //此时this.model.data为空
+                        window.eventHub.emit('create', data);
+                    }, function (err) {
+                        console.log(err);
+                    });
+                }
             })
         }
     }
