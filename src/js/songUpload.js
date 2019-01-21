@@ -5,7 +5,11 @@
             return $(this.el).find(selector)[0]
         }
     };
-    let model = {}
+    let model = {
+        data: {
+            state: 'open',
+        }
+    }
     let controller = {
         init(view, model) {
             this.view = view;
@@ -35,13 +39,22 @@
                             // 文件添加进队列后,处理相关的事情
                         });
                     },
-                    'BeforeUpload': function (up, file) {
+                    'BeforeUpload': (up, file) => {
                         // 每个文件上传前,处理相关的事情
+                        if (this.model.state === 'closed') {
+                            console.log('锁住了,第二次上传失败')
+                            return false;
+                        } else {
+                            this.model.state = 'closed';
+                            console.log('第一次上传')
+                            return true;
+                        }
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
-                        let ulprogs = view.find('#uploadprogress')
-                        ulprogs.innerText = file.percent;
+                        let ulprogs = $(view.find('#uploadprogress'));
+                        console.log(ulprogs);
+                        ulprogs.css("width", file.percent);
                     },
                     'FileUploaded': function (up, file, info) {
                         // 每个文件上传成功后,处理相关的事情
@@ -56,15 +69,16 @@
                         var response = JSON.parse(info.response);
                         var sourceLink = 'http://' + domain + '/' + encodeURIComponent(response.key); //获取上传成功后的文件的Url
                         window.eventHub.emit('upload', {
-                            'key': response.key,
-                            'link': sourceLink,
-                        })
+                            'songName': response.key,
+                            'externalUrl': sourceLink,
+                        });
                     },
                     'Error': function (up, err, errTip) {
                         //上传出错时,处理相关的事情
                     },
-                    'UploadComplete': function () {
+                    'UploadComplete': () => {
                         //队列文件处理完毕后,处理相关的事情
+                        this.model.state = 'open';
                     },
                     // 歌曲名
                     // 'Key': function (up, file) {

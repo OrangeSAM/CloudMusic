@@ -55,6 +55,7 @@
             window.eventHub.on('upload', (data) => {
                 //当音乐上传模块上传完毕后，会通过事件中心告诉这里，
                 //并且传递了上传的data，这里把data交给view渲染到页面上
+                console.log(data);
                 this.view.render(data);
             });
             window.eventHub.on('clicked', (data) => {

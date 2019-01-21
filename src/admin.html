@@ -20,9 +20,6 @@
         li {
             list-style: none;
         }
-        label{
-            vertical-align: middle;
-        }
 
         .clearfix::after{
             content: '';
@@ -53,7 +50,7 @@
             text-align: center;
             background-color: #f7f7f7;
         }
-
+        
         #container #pickfiles {
             width: 10%;
             margin: 0 auto;
@@ -63,6 +60,15 @@
             color: white;
             box-shadow: 0 7px 20px 3px #cee2ff;
             cursor: pointer;
+        }
+        #pickfiles #uploadprogress{
+            position: absolute;
+            top: 0;
+            border-radius: 5px;
+            width: 0%;
+            height: 100%;
+            z-index: -1;
+            background-color: #c20c0c;
         }
 
         .uploader .comments {
@@ -146,8 +152,12 @@
             <h1>Music upload panel</h1>
             <div id="container">
                 <p>Click on the button or drag files here</p>
-                <div id="pickfiles">upload</div><span id="uploadprogress"> </span>
+                <div id="pickfiles">
+                    upload
+                    <div id="uploadprogress"></div>
+                </div>
             </div>
+
             <span class="comments">*上传文件大小不能超过100M</span>
         </main>
         <div class="wrapper clearfix">
@@ -174,7 +184,7 @@
             </div>
         </div>
     </div>
-
+    <!-- 上传loading  -->
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="../vendors/moxie.min.js"></script>
     <script src="../node_modules/plupload/js/plupload.min.js"></script>
