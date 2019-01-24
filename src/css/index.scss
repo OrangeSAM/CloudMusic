@@ -1,0 +1,103 @@
+$maincolor:rgb(212, 60, 51);
+
+.stickyBar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
+    .topBar {
+        background-color: $maincolor;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10px;
+
+        div:first-child {
+            display: flex;
+
+            svg {
+                width: 142px;
+                height: 64px;
+            }
+        }
+
+        div:nth-child(2) {
+            border-radius: 42.42px;
+            border: 1px solid white;
+            padding: 5px 10px;
+
+            a {
+                color: white;
+            }
+        }
+
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 1px solid rgb(204, 204, 204);
+
+        span {
+            padding: 10px 0;
+            position: relative;
+
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: -1px;
+                width: 100%;
+                height: 2px;
+                background-color: $maincolor;
+            }
+        }
+
+    }
+}
+
+h4 {
+    position: relative;
+    padding-left: 5%;
+}
+
+h4::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: $maincolor;
+    left: 0%;
+}
+
+main {
+    margin-top: 106px;
+
+    .albumList {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+
+
+        .album {
+            padding-right: 2px;
+            width: 33.3333%;
+
+            div {
+                position: relative;
+            }
+
+            img {
+                width: 100%;
+            }
+
+            span {
+                color: white;
+                position: absolute;
+                top: 1%;
+                right: 2%;
+            }
+        }
+    }
+}

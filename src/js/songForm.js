@@ -59,7 +59,6 @@
                 this.view.render(data);
             });
             window.eventHub.on('clicked', (data) => {
-                console.log(data);
                 this.model.data = data;
                 //点击后也要及时更新model.data
                 this.view.render(data);

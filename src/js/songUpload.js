@@ -46,14 +46,12 @@
                             return false;
                         } else {
                             this.model.state = 'closed';
-                            console.log('第一次上传')
                             return true;
                         }
                     },
                     'UploadProgress': function (up, file) {
                         // 每个文件上传时,处理相关的事情
                         let ulprogs = $(view.find('#uploadprogress'));
-                        console.log(ulprogs);
                         ulprogs.css("width", file.percent);
                     },
                     'FileUploaded': function (up, file, info) {

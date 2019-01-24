@@ -1,0 +1,153 @@
+/*
+ * @Author: Sam liu 
+ * @Date: 2019-01-24 11:08:12 
+ * @Last Modified by:   Sam liu 
+ * @Last Modified time: 2019-01-24 11:08:12 
+ */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(194, 12, 12)
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.outer {
+    min-height: 600px;
+    margin: 20px;
+    background: url(./img/cover.jpg) left center;
+    border-radius: 5px;
+}
+
+.uploader {
+    text-align: center;
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+    opacity: 0.9;
+}
+
+.uploader h1 {
+    color: white;
+}
+
+#container {
+    border: 2px dashed lightgray;
+    border-radius: 10px;
+    padding: 50px 30px;
+    text-align: center;
+    background-color: #f7f7f7;
+}
+
+#container #pickfiles {
+    width: 10%;
+    margin: 0 auto;
+    padding: 5px 0;
+    background-color: #2693ff;
+    border-radius: 5px;
+    color: white;
+    box-shadow: 0 7px 20px 3px #cee2ff;
+    cursor: pointer;
+}
+
+#pickfiles #uploadprogress {
+    position: absolute;
+    top: 0;
+    border-radius: 5px;
+    width: 0%;
+    height: 100%;
+    z-index: -1;
+    background-color: #c20c0c;
+}
+
+.uploader .comments {
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    font-size: smaller;
+    color: gray;
+}
+
+.wrapper {
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 2.5rem;
+}
+
+.songlist {
+    width: 40%;
+    float: left;
+}
+
+.songlist ul li {
+    margin-bottom: 8px;
+}
+
+.songlist ul li.active {
+    opacity: 0.6;
+}
+
+.songlist ul li>div {
+    padding: 10px;
+    background-color: rgb(83, 83, 83);
+    opacity: 0.9;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+.songlist ul li>div span {
+    vertical-align: top;
+}
+
+.songlist ul li>div span:first-child {
+    display: inline-block;
+    width: 60%;
+}
+
+.songedit {
+    float: right;
+    margin-left: 5%;
+    width: 45%;
+    color: white;
+}
+
+.songedit form>div {
+    margin-bottom: 8px;
+}
+
+.songedit input[type=text] {
+    width: 60%;
+    padding: 7px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+}
+
+.songedit input[type=submit] {
+    position: relative;
+    left: 25%;
+    border: none;
+    width: 20%;
+    margin: 0 auto;
+    margin-top: 6%;
+    padding: 5px 0;
+    background-color: #2693ff;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
