@@ -4,6 +4,7 @@ $maincolor:rgb(212, 60, 51);
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1;
 
     .topBar {
         background-color: $maincolor;
@@ -41,6 +42,7 @@ $maincolor:rgb(212, 60, 51);
         span {
             padding: 10px 0;
             position: relative;
+            font-size: small;
 
             &::after {
                 content: '';
@@ -78,8 +80,6 @@ main {
         justify-content: space-between;
         flex-wrap: wrap;
 
-
-
         .album {
             padding-right: 2px;
             width: 33.3333%;
@@ -97,6 +97,32 @@ main {
                 position: absolute;
                 top: 1%;
                 right: 2%;
+                font-size: small;
+            }
+
+            p {
+                padding: 0px 2px 0px 6px;
+                font-size: smaller;
+            }
+        }
+    }
+
+    .songList {
+
+        margin-top: 10px;
+
+        .singleSong {
+            display: flex;
+            align-items: center;
+            margin-left: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(0, 0, 0, .1);
+
+            div:first-child {
+                .singer {
+                    font-size: smaller;
+                    color: #888;
+                }
             }
         }
     }

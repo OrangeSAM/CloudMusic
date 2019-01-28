@@ -1,0 +1,65 @@
+body {
+    height: 100vh;
+    background: transparent url("//music.163.com/api/img/blur/5508553255245022") no-repeat;
+    background-size: cover;
+}
+
+@keyframes myrotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(365deg);
+    }
+}
+
+.logo svg {
+    width: 92px;
+    height: 17px;
+}
+
+.disc {
+    width: 296px;
+    height: 296px;
+    margin: 0 auto;
+    padding-top: 40px;
+
+    .circle {
+        position: relative;
+
+        img {
+            position: absolute;
+        }
+
+        .disc-ring {
+            width: 296px;
+            z-index: 1;
+            animation: myrotate 20s infinite linear;
+        }
+
+        .disc-default {
+            width: 276px;
+            border-radius: 50%;
+            left: 10px;
+            top: 10px;
+            animation: myrotate 20s infinite linear;
+        }
+
+        .cover {
+            width: 174px;
+            left: 61px;
+            top: 61px;
+            border-radius: 50%;
+            animation: myrotate 20s infinite linear;
+        }
+
+        .needdle {
+            width: 96px;
+            height: 137px;
+            top: -61px;
+            left: 130px;
+            z-index: 2;
+        }
+    }
+}
