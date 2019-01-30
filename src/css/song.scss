@@ -63,7 +63,11 @@ body {
       border-radius: 50%;
       animation: myrotate 20s infinite linear;
     }
-
+    .disc-ring.playing,
+    .disc-default.playing,
+    .cover.playing {
+      animation-play-state: paused;
+    }
     .needdle {
       width: 96px;
       height: 137px;
@@ -79,6 +83,7 @@ body {
       border: 1px solid white;
       border-radius: 50%;
       padding: 0.6em;
+      background-color: rgba(0, 0, 0, 0.3);
       svg {
         width: 2em;
         height: 2em;

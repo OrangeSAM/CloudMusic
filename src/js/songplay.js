@@ -28,15 +28,26 @@ audioEle.src = "http://117.169.85.25/amobile.music.tc.qq.com/C4000012jhy63iVTH3.
 let $playbtn = $('.disc');
 let $playicon = $('.playbtn');
 
+let played = false;
+
 function play() {
-    console.log('play函数')
     $playicon.toggleClass('active');
-    audioEle.play();
+    $('.disc-ring').toggleClass('playing');
+    $('.disc-default').toggleClass('playing');
+    $('.cover').toggleClass('playing');
+    if (played) {
+        console.log('现在需要播放')
+        audioEle.pause();
+        played = false;
+    } else {
+        console.log('现在需要暂停')
+        audioEle.play();
+        played = true;
+    }
 }
 
 // jq和原生的用法要分开
 // 之前用addevent和onclick都没有用
 $playbtn.click(function () {
     play();
-    console.log('点击了');
 });

@@ -1,5 +1,13 @@
 $maincolor:rgb(212, 60, 51);
 
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
 .stickyBar {
     position: fixed;
     top: 0;
@@ -42,14 +50,15 @@ $maincolor:rgb(212, 60, 51);
         span {
             padding: 10px 0;
             position: relative;
-            font-size: small;
+            font-size: 15px;
 
             &::after {
                 content: '';
                 display: block;
                 position: absolute;
+                left: -10%;
+                right: -10%;
                 bottom: -1px;
-                width: 100%;
                 height: 2px;
                 background-color: $maincolor;
             }
@@ -60,6 +69,7 @@ $maincolor:rgb(212, 60, 51);
 
 h4 {
     position: relative;
+    padding: 5% 0;
     padding-left: 5%;
 }
 
@@ -67,7 +77,7 @@ h4::after {
     content: '';
     position: absolute;
     width: 2px;
-    height: 100%;
+    height: 22px;
     background-color: $maincolor;
     left: 0%;
 }
@@ -81,8 +91,8 @@ main {
         flex-wrap: wrap;
 
         .album {
-            padding-right: 2px;
-            width: 33.3333%;
+            width: 33%;
+            margin-bottom: 17px;
 
             div {
                 position: relative;
@@ -98,6 +108,14 @@ main {
                 top: 1%;
                 right: 2%;
                 font-size: small;
+
+                svg {
+                    width: 1em;
+                    height: 1em;
+                    position: absolute;
+                    left: -14px;
+                    top: 3px;
+                }
             }
 
             p {
@@ -114,16 +132,65 @@ main {
         .singleSong {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             margin-left: 10px;
             padding-bottom: 5px;
             border-bottom: 1px solid rgba(0, 0, 0, .1);
 
             div:first-child {
+                .songName {
+                    font-size: 17px;
+                }
+
                 .singer {
-                    font-size: smaller;
+                    font-size: 12px;
                     color: #888;
+
+                    svg {
+                        position: relative;
+                        top: 2px;
+                        width: 1.3em;
+                        height: 1.3em;
+                    }
+                }
+            }
+
+            >div:nth-child(2) {
+                border: 1px solid lightgray;
+                margin-right: 10px;
+
+                svg {
+                    width: 2em;
+                    height: 2em;
+                    fill: lightgray;
                 }
             }
         }
     }
+
+    .recommend {
+        background: url(../img/footer.png);
+        text-align: center;
+
+        svg {
+            width: 230px;
+            height: 44px;
+            margin-top: 40px;
+        }
+
+        .download {
+            color: $maincolor;
+            border: 1px solid $maincolor;
+            padding: 10px 40px;
+            display: inline-block;
+            border-radius: 38px;
+            margin: 20px 0 10px 0;
+        }
+
+        .copyright {
+            font-size: 12px;
+            transform: scale(.75);
+        }
+    }
+
 }
