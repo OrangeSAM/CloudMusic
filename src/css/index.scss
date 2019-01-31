@@ -46,6 +46,7 @@ $maincolor:rgb(212, 60, 51);
         display: flex;
         justify-content: space-around;
         border-bottom: 1px solid rgb(204, 204, 204);
+        background-color: white;
 
         span {
             padding: 10px 0;
@@ -69,21 +70,22 @@ $maincolor:rgb(212, 60, 51);
 
 h4 {
     position: relative;
-    padding: 5% 0;
-    padding-left: 5%;
+    margin: 3% 0;
+    margin-left: 3%;
+    font-weight: normal;
 }
 
 h4::after {
     content: '';
     position: absolute;
     width: 2px;
-    height: 22px;
+    height: 100%;
     background-color: $maincolor;
-    left: 0%;
+    left: -3%;
 }
 
 main {
-    margin-top: 106px;
+    margin-top: 121px;
 
     .albumList {
         display: flex;
@@ -156,13 +158,21 @@ main {
             }
 
             >div:nth-child(2) {
-                border: 1px solid lightgray;
+                border: 1px solid #ababab;
                 margin-right: 10px;
+                border-radius: 50%;
+                width: 25px;
+                height: 25px;
+                position: relative;
 
                 svg {
-                    width: 2em;
-                    height: 2em;
-                    fill: lightgray;
+                    width: 1em;
+                    height: 1em;
+                    fill: #ababab;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
                 }
             }
         }
@@ -190,6 +200,7 @@ main {
         .copyright {
             font-size: 12px;
             transform: scale(.75);
+            padding-bottom: 10px;
         }
     }
 

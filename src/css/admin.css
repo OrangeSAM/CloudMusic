@@ -1,8 +1,8 @@
 /*
  * @Author: Sam liu 
  * @Date: 2019-01-24 11:08:12 
- * @Last Modified by:   Sam liu 
- * @Last Modified time: 2019-01-24 11:08:12 
+ * @Last Modified by: Sam liu
+ * @Last Modified time: 2019-01-31 20:01:35
  */
 body {
     margin: 0;
@@ -28,7 +28,7 @@ li {
 .outer {
     min-height: 600px;
     margin: 20px;
-    background: url(./img/cover.jpg) left center;
+    background: url(../img/cover.jpg) left center;
     border-radius: 5px;
 }
 
