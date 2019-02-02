@@ -9,8 +9,8 @@ var query = new AV.Query('song');
 let songlist = document.querySelector('.songList');
 query.find().then(function (song) {
     song.forEach(function (object) {
-        var singlesong = document.createElement('div');
-        singlesong.innerHTML = `<a href="">
+        let singlesong = document.createElement('div');
+        singlesong.innerHTML = `
         <div class="singleSong">    
             <div>
                 <div class="songName">${object.attributes.songName}</div>
@@ -21,19 +21,39 @@ query.find().then(function (song) {
                     <span class="singer">${object.attributes.singer}</span> -<span class="album">飞行器的执行周期</span>
                 </div>
             </div>
-            <div>
+            <div class="hereforclick" data-url="${object.attributes.externalUrl}">
                 <svg class="icon" aria-hidden="true">
                     <use xlink:href="#icon-bofang"></use>
                 </svg>
             </div>
-        </div>
-    </a>`;
-        console.log(singlesong);
+        </div>`;
         songlist.appendChild(singlesong);
         //但是这样就多了一个div元素，之前是直接append反字符串内容 所以没用 ，解决方法只有jquery吗?
+        //待做  页面间的数据传递
     });
-}).then(function (song) {
-    console.log(song); // 更新成功
+}).then(function () {
+    let clickEvent = document.querySelectorAll('.hereforclick');
+    // clickEvent.forEach((curv) => {
+    //     console.log(curv);
+    //     addEventListener('click', function (e) {
+    //         e.preventDefault();
+    //         console.log(e);
+    //         console.log(e.target.dataset.url);
+    //         let a = e.target.dataset.url;
+    //         sessionStorage.setItem('externalUrl', a);
+    //         // window.location.href = 'http://127.0.0.1:8080/src/song.html';
+    //     })
+    // });
+    for (let i = 0; i < clickEvent.length; i++) {
+        clickEvent[i].addEventListener('click', function (e) {
+            e.preventDefault();
+            console.log(e);
+            console.log(e.path[2]);
+            let a = e.target.dataset.url;
+            sessionStorage.setItem('externalUrl', a);
+            // window.location.href = 'http://127.0.0.1:8080/src/song.html';
+        }, true)
+    }
 }, function (error) {
     console.log(error); // 异常处理
 });

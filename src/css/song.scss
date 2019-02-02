@@ -1,9 +1,9 @@
 body {
   height: 100vh;
-  background: transparent url("//music.163.com/api/img/blur/5508553255245022")
-    no-repeat;
+  background: transparent url("//music.163.com/api/img/blur/5508553255245022") no-repeat;
   background-size: cover;
 }
+
 .icon {
   width: 1em;
   height: 1em;
@@ -11,6 +11,7 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
+
 @keyframes myrotate {
   0% {
     transform: rotate(0deg);
@@ -46,6 +47,7 @@ body {
       width: 273px;
       z-index: 1;
       animation: myrotate 20s infinite linear;
+      animation-play-state: running;
     }
 
     .disc-default {
@@ -54,6 +56,7 @@ body {
       left: 10px;
       top: 10px;
       animation: myrotate 20s infinite linear;
+      animation-play-state: running;
     }
 
     .cover {
@@ -62,12 +65,15 @@ body {
       top: 46px;
       border-radius: 50%;
       animation: myrotate 20s infinite linear;
+      animation-play-state: running;
     }
+
     .disc-ring.playing,
     .disc-default.playing,
     .cover.playing {
       animation-play-state: paused;
     }
+
     .needdle {
       width: 96px;
       height: 137px;
@@ -75,8 +81,9 @@ body {
       left: 127px;
       z-index: 2;
     }
+
     .playbtn {
-      visibility: hidden;
+      visibility: initial;
       position: absolute;
       top: 110px;
       left: 110px;
@@ -84,13 +91,15 @@ body {
       border-radius: 50%;
       padding: 0.6em;
       background-color: rgba(0, 0, 0, 0.3);
+
       svg {
         width: 2em;
         height: 2em;
       }
     }
+
     .playbtn.active {
-      visibility: initial;
+      visibility: hidden;
     }
   }
 }
@@ -101,6 +110,7 @@ body {
   text-align: center;
   height: 4em;
   overflow: hidden;
+
   .lyric-detail {
     p {
       color: inherit;
@@ -108,16 +118,19 @@ body {
     }
   }
 }
+
 footer {
   .links {
     display: flex;
     justify-content: space-around;
+
     a {
       padding: 10px 65px;
       border: 1px solid #d33a31;
       color: white;
       border-radius: 20px;
     }
+
     a.active {
       background-color: #d33a31;
     }
