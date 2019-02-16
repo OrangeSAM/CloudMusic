@@ -2,7 +2,7 @@
  * @Author: Sam liu 
  * @Date: 2019-01-24 11:08:12 
  * @Last Modified by: Sam liu
- * @Last Modified time: 2019-01-31 20:01:35
+ * @Last Modified time: 2019-02-13 22:57:26
  */
 body {
     margin: 0;
@@ -26,6 +26,7 @@ li {
 }
 
 .outer {
+    height: 94vh;
     min-height: 600px;
     margin: 20px;
     background: url(../img/cover.jpg) left center;
