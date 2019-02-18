@@ -108,10 +108,13 @@ body {
   margin: 100px 0;
   color: #fefefe;
   text-align: center;
-  height: 4em;
+  height: 5.5em;
   overflow: hidden;
 
   .lyric-detail {
+    margin-top: 1.5em;
+    overflow: hidden;
+
     p {
       color: inherit;
       line-height: 1.8em;
