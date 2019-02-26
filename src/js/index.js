@@ -61,9 +61,8 @@ query
             e.preventDefault();
             let songId = e.target.dataset.songid;
             sessionStorage.setItem("songId", songId);
-            let href = window.location.href;
-            parthref = href.split('src');
-            window.location.href = parthref + "/src/song.html";
+            let href = window.location.href.split('src');
+            window.location.href = href[0] + "/src/song.html";
           },
           true
         );
