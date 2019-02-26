@@ -1,6 +1,7 @@
 body {
   height: 100vh;
-  background: transparent url("//music.163.com/api/img/blur/5508553255245022") no-repeat;
+  // background: transparent url("//music.163.com/api/img/blur/5508553255245022") no-repeat;
+  background: transparent url("../img/cover.jpg") no-repeat;
   background-size: cover;
 }
 
@@ -93,6 +94,7 @@ body {
       background-color: rgba(0, 0, 0, 0.3);
 
       svg {
+        fill: #ffffff;
         width: 2em;
         height: 2em;
       }

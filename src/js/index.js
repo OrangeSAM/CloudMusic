@@ -26,7 +26,7 @@ query
                     <span class="singer">${
                       object.attributes.singer}
                       </span> 
-                      <!-- -<span class="album">飞行器的执行周期</span> -->
+                      <span class="album">-${object.attributes.album}</span>
                 </div>
             </div>
             <div>
@@ -62,7 +62,7 @@ query
             let songId = e.target.dataset.songid;
             sessionStorage.setItem("songId", songId);
             let href = window.location.href.split('src');
-            window.location.href = href[0] + "/src/song.html";
+            window.location.href = href[0] + "src/song.html";
           },
           true
         );

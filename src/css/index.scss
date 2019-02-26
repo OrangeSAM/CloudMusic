@@ -79,10 +79,10 @@ h4::after {
     content: '';
     position: absolute;
     width: 2px;
-    height: 60%;
+    height: 80%;
     background-color: $maincolor;
     left: -3%;
-    top: 24%;
+    top: 16%;
 }
 
 main {
@@ -256,6 +256,7 @@ main {
 
     .searchform {
         text-align: center;
+        position: relative;
 
         input {
             width: 95%;
@@ -263,9 +264,18 @@ main {
             font-size: 14px;
             border-radius: 20px;
             outline: none;
-            border: 1px solid rgba(0, 0, 0, .2);
-            padding-left: 20px;
+            border: 1px solid #efefef;
+            padding-left: 6%;
             background-color: #f1f1f1;
+        }
+
+        .searchIcon {
+            position: absolute;
+            top: 28%;
+            left: 4%;
+            width: 4%;
+            height: 50%;
+            background: url(../img/search.svg) no-repeat;
         }
     }
 
@@ -278,6 +288,7 @@ main {
             font-size: 12px;
             line-height: 12px;
             color: #666;
+            font-weight: normal;
         }
 
         .hotsearch {
