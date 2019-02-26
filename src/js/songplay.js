@@ -28,28 +28,7 @@ querySong.get(songId).then(response => {
     //获取歌词这里踩了大坑  应该用对象格式存
 });
 
-audioEle.ontimeupdate = function (e) {
-    let time = e.path[0].currentTime;
-    let curTime =
-        "0" +
-        (time / 6000).toFixed() +
-        ":" +
-        (time % 1000 > 10 ? "" : "0") +
-        (time % 1000).toFixed(3);
-    for (let i = 0; i < lyricArray.length; i++) {
-        if (curTime > lyricArray[i]["time"]) {
-            let para1 = document.createElement("p");
-            para1.innerText = lyricArray[i]["words"];
-            console.log(para1);
-            let para2 = document.createElement("p");
-            para2.innerText = lyricArray[i + 1]["words"];
-            lyricWrap.append = para1;
-            // let count = 0;
-            // count += 1
-            // lyricCont.setAttribute('style', "transform:translateY(" + (-2) * count + "em" + ")")
-        }
-    }
-};
+
 var lyricArray;
 
 function formatLyric(lyric) {
@@ -70,16 +49,51 @@ function formatLyric(lyric) {
     });
 }
 
-//控制歌听后封面停转
+audioEle.ontimeupdate = function () {
+    let time = this.currentTime;
+    var playTime =
+        "0" +
+        (time / 6000).toFixed() +
+        ":" +
+        (time % 1000 > 10 ? "" : "0") +
+        (time % 1000).toFixed(3);
+    let allp = $('.lyric-wrap>p');
+    let p;
+    for (let i = 0; i < allp.length; i++) {
+        if (i === allp.length - 1) {
+            p = allp[i];
+            $('.lyric-wrap').css({
+                transform: 'translateY(0px)'
+            })
+        } else {
+            let curttime = allp.eq(i).attr('data-time');
+            let nexttime = allp.eq(i + 1).attr('data-time');
+            if (curttime <= playTime && playTime < nexttime) {
+                p = allp[i];
+                break;
+            }
+        }
+    }
+    let pHeight = p.getBoundingClientRect().top;
+    let lyricWrap = document.querySelector('.lyric-wrap');
+    let lineHeight = lyricWrap.getBoundingClientRect().top;
+    let height = pHeight - lineHeight;
+    $('.lyric-wrap').css({
+        transform: `translateY(${-height}px)`
+    })
+
+};
+
+//控制歌停后封面停转
 audioEle.addEventListener("ended", function () {
     $(".disc-ring").addClass("playing");
     $(".disc-default").addClass("playing");
     $(".cover").addClass("playing");
 });
 
+//进入页面默认播放
 let $playbtn = $(".disc");
 let $playicon = $(".playbtn");
-
 let played = true;
 
 function play() {
