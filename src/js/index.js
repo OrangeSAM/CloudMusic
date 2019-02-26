@@ -7,14 +7,15 @@ AV.init({
 });
 var query = new AV.Query("song");
 let songlist = document.querySelector(".songList");
+
 query
   .find()
   .then(function (song) {
     song.forEach(function (object) {
       let singlesong = document.createElement("div");
       singlesong.classList.add("singleSong");
-      singlesong.classList.add('hereforclick');
-      singlesong.setAttribute('data-songId', object.id)
+      singlesong.classList.add("hereforclick");
+      singlesong.setAttribute("data-songId", object.id);
       singlesong.innerHTML = `
             <div>
                 <div class="songName">${object.attributes.songName}</div>
@@ -23,8 +24,9 @@ query
                         <use xlink:href="#icon-wusunyinzhi"></use>
                     </svg>
                     <span class="singer">${
-                      object.attributes.singer
-                    }</span> -<span class="album">飞行器的执行周期</span>
+                      object.attributes.singer}
+                      </span> 
+                      <!-- -<span class="album">飞行器的执行周期</span> -->
                 </div>
             </div>
             <div>
@@ -59,8 +61,9 @@ query
             e.preventDefault();
             let songId = e.target.dataset.songid;
             sessionStorage.setItem("songId", songId);
-            window.location.href = 'http://127.0.0.1:8080/src/song.html';
-          }, true
+            window.location.href = "http://127.0.0.1:8080/src/song.html";
+          },
+          true
         );
       }
     },
@@ -68,3 +71,15 @@ query
       console.log(error); // 异常处理
     }
   );
+
+$(".stickyBar nav").on("click", "span", function (e) {
+  let $span = $(e.currentTarget).addClass("active");
+  $span.siblings().removeClass("active");
+  let index = $span.index();
+  $span.trigger("tabChange", index);
+  $(".tabContent > li")
+    .eq(index)
+    .addClass("active")
+    .siblings()
+    .removeClass("active");
+});

@@ -45,7 +45,7 @@ $maincolor:rgb(212, 60, 51);
     nav {
         display: flex;
         justify-content: space-around;
-        border-bottom: 1px solid rgb(204, 204, 204);
+        border-bottom: 1px solid #eaeaea;
         background-color: white;
 
         span {
@@ -53,15 +53,16 @@ $maincolor:rgb(212, 60, 51);
             position: relative;
             font-size: 15px;
 
-            &::after {
-                content: '';
-                display: block;
-                position: absolute;
-                left: -10%;
-                right: -10%;
-                bottom: -1px;
-                height: 2px;
-                background-color: $maincolor;
+            &.active {
+                border-bottom: 2px solid $maincolor;
+                // content: '';
+                // display: block;
+                // position: absolute;
+                // left: -10%;
+                // right: -10%;
+                // bottom: -1px;
+                // height: 2px;
+                // background-color: $maincolor;
             }
         }
 
@@ -70,8 +71,7 @@ $maincolor:rgb(212, 60, 51);
 
 h4 {
     position: relative;
-    margin: 3% 0;
-    margin-left: 3%;
+    margin: 3% 0 3% 3%;
     font-weight: normal;
 }
 
@@ -79,13 +79,22 @@ h4::after {
     content: '';
     position: absolute;
     width: 2px;
-    height: 100%;
+    height: 60%;
     background-color: $maincolor;
     left: -3%;
+    top: 24%;
 }
 
 main {
     margin-top: 121px;
+
+    .tabContent li {
+        display: none;
+
+        &.active {
+            display: block;
+        }
+    }
 
     .albumList {
         display: flex;
@@ -136,6 +145,7 @@ main {
             align-items: center;
             justify-content: space-between;
             margin-left: 10px;
+            padding-top: 5px;
             padding-bottom: 5px;
             border-bottom: 1px solid rgba(0, 0, 0, .1);
 
@@ -205,6 +215,7 @@ main {
     }
 
     .hitlist {
+        margin-top: -13px;
         width: 100%;
         height: 161px;
         background: url(../img/hitlist.jpg);
@@ -254,12 +265,14 @@ main {
             outline: none;
             border: 1px solid rgba(0, 0, 0, .2);
             padding-left: 20px;
-            background-color: #ebecec;
+            background-color: #f1f1f1;
         }
     }
 
     .search {
+        margin-top: 15px;
         padding: 15px 10px 0;
+        border-top: 1px solid #f9f8f8;
 
         h3 {
             font-size: 12px;
