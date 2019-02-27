@@ -60,17 +60,18 @@ audioEle.ontimeupdate = function () {
     let allp = $('.lyric-wrap>p');
     let p;
     for (let i = 0; i < allp.length; i++) {
-        if (i === allp.length - 1) {
-            p = allp[i];
-            $('.lyric-wrap').css({
-                transform: 'translateY(0px)'
-            })
-        } else {
+        if (allp.eq(i + 1).length !== 0) {
+            // if(i===allP.length-1){
+            //     p = allp[i];
+            //     break;
+            // } else {
             let curttime = allp.eq(i).attr('data-time');
             let nexttime = allp.eq(i + 1).attr('data-time');
             if (curttime <= playTime && playTime < nexttime) {
                 p = allp[i];
                 break;
+            } else {
+                p = allp[0]
             }
         }
     }
@@ -79,9 +80,9 @@ audioEle.ontimeupdate = function () {
     let lineHeight = lyricWrap.getBoundingClientRect().top;
     let height = pHeight - lineHeight;
     $('.lyric-wrap').css({
-        transform: `translateY(${-height}px)`
+        transform: `translateY(${-(height-25)}px)`
     })
-
+    $(p).addClass('active').siblings('.active').removeClass('active');
 };
 
 //控制歌停后封面停转

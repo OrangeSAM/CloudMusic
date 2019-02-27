@@ -107,24 +107,43 @@ body {
 }
 
 .lyric {
-  margin: 100px 0;
+  margin: 25% 0 14% 0;
   color: #fefefe;
   text-align: center;
-  height: 5.5em;
+  height: 6.6em;
   overflow: hidden;
 
   .lyric-detail {
     margin-top: 0.2em;
     overflow: hidden;
 
+    .lyric-wrap {
+      transition: all .3s;
+    }
+
     p {
-      color: inherit;
+      color: gray;
       line-height: 1.8em;
+      font-size: 15px;
+    }
+
+    p.active {
+      color: white;
     }
   }
 }
 
 footer {
+  .lyriclink {
+    text-align: center;
+    margin-bottom: 9%;
+    font-size: 14px;
+
+    a {
+      color: lightgray;
+    }
+  }
+
   .links {
     display: flex;
     justify-content: space-around;
