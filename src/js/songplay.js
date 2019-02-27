@@ -28,7 +28,6 @@ querySong.get(songId).then(response => {
     //获取歌词这里踩了大坑  应该用对象格式存
 });
 
-
 var lyricArray;
 
 function formatLyric(lyric) {
@@ -39,7 +38,12 @@ function formatLyric(lyric) {
         if (matches) {
             let para = document.createElement("p");
             para.innerText = matches[2];
-            para.setAttribute("data-time", matches[1]);
+            let time = matches[1]
+            let parts = time.split(':')
+            let minutes = parts[0]
+            let seconds = parts[1]
+            let newTime = parseInt(minutes, 10) * 60 + parseFloat(seconds, 10)
+            para.setAttribute("data-time", newTime);
             lyricWrap.append(para);
             return {
                 time: matches[1],
@@ -51,13 +55,13 @@ function formatLyric(lyric) {
 
 audioEle.ontimeupdate = function () {
     let time = this.currentTime;
-    var playTime =
-        "0" +
-        (time / 6000).toFixed() +
-        ":" +
-        (time % 1000 > 10 ? "" : "0") +
-        (time % 1000).toFixed(3);
-    let allp = $('.lyric-wrap>p');
+    // var playTime =
+    //     "0" +
+    //     (time / 6000).toFixed() +
+    //     ":" +
+    //     (time % 1000 > 10 ? "" : "0") +
+    //     (time % 1000).toFixed(3);
+    let allp = $(".lyric-wrap>p");
     let p;
     for (let i = 0; i < allp.length; i++) {
         if (allp.eq(i + 1).length !== 0) {
@@ -65,24 +69,27 @@ audioEle.ontimeupdate = function () {
             //     p = allp[i];
             //     break;
             // } else {
-            let curttime = allp.eq(i).attr('data-time');
-            let nexttime = allp.eq(i + 1).attr('data-time');
-            if (curttime <= playTime && playTime < nexttime) {
+            let curttime = allp.eq(i).attr("data-time");
+            let nexttime = allp.eq(i + 1).attr("data-time");
+            if (curttime <= time && time < nexttime) {
                 p = allp[i];
                 break;
             } else {
-                p = allp[0]
+                p = allp[0];
             }
         }
     }
     let pHeight = p.getBoundingClientRect().top;
-    let lyricWrap = document.querySelector('.lyric-wrap');
+    let lyricWrap = document.querySelector(".lyric-wrap");
     let lineHeight = lyricWrap.getBoundingClientRect().top;
     let height = pHeight - lineHeight;
-    $('.lyric-wrap').css({
-        transform: `translateY(${-(height-25)}px)`
-    })
-    $(p).addClass('active').siblings('.active').removeClass('active');
+    $(".lyric-wrap").css({
+        transform: `translateY(${-(height - 25)}px)`
+    });
+    $(p)
+        .addClass("active")
+        .siblings(".active")
+        .removeClass("active");
 };
 
 //控制歌停后封面停转
